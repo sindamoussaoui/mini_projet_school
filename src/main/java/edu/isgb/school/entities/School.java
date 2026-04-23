@@ -3,6 +3,7 @@ package edu.isgb.school.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.List;
 
 @Getter
@@ -17,6 +18,7 @@ public class School {
     private String name;
 
     private int phone;
+
     @OneToMany(mappedBy = "school")
     private List<Department> departments;
 }
