@@ -2,13 +2,11 @@ package edu.isgb.school;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication;
 
-import edu.isgb.school.entities.School;
-import edu.isgb.school.entities.Department;
-import edu.isgb.school.repositories.SchoolRepository;
-import edu.isgb.school.repositories.DepartmentRepository;
+import edu.isgb.school.entities.*;
+import edu.isgb.school.repositories.*;
 
 @SpringBootApplication
 public class Application {
@@ -21,18 +19,35 @@ public class Application {
     CommandLineRunner run(SchoolRepository schoolRepo, DepartmentRepository deptRepo) {
         return args -> {
 
-            School school = new School();
-            school.setName("ISGB");
-            school.setPhone(123456);
-            schoolRepo.save(school);
+            // Schools
+            School s1 = new School();
+            s1.setName("ISGB");
+            s1.setPhone(123456);
+            schoolRepo.save(s1);
 
-            Department dept = new Department();
-            dept.setName("Informatique");
-            dept.setSchool(school);
-            deptRepo.save(dept);
+            School s2 = new School();
+            s2.setName("ISET");
+            s2.setPhone(789101);
+            schoolRepo.save(s2);
 
-            System.out.println("🔥 DATA INSERTED !");
+            // Departments
+            Department d1 = new Department();
+            d1.setName("Informatique");
+            d1.setSchool(s1);
+
+            Department d2 = new Department();
+            d2.setName("Math");
+            d2.setSchool(s1);
+
+            Department d3 = new Department();
+            d3.setName("Gestion");
+            d3.setSchool(s2);
+
+            deptRepo.save(d1);
+            deptRepo.save(d2);
+            deptRepo.save(d3);
+
+            System.out.println("DONE ✅");
         };
     }
-        };
-
+}
