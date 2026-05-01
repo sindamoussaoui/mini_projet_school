@@ -47,7 +47,7 @@ public class Application {
             deptRepo.save(d2);
             deptRepo.save(d3);
 
-            System.out.println("DONE ✅");
+            System.out.println("DONE ");
         };
     }
 }
