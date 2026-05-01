@@ -1,5 +1,6 @@
 package edu.isgb.school.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -8,7 +9,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PK_ADDRESS")
+    @Column(name = "pk_address")
     private Integer idAddress;
 
     @Column(name = "cl_street")
@@ -20,25 +21,11 @@ public class Address {
     @Column(name = "cl_postal_code")
     private String postalCode;
 
-    //  CAS 1 unidirectionnel
+    @JsonIgnore
+    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
+    private Student student;
 
     public Address() {}
 
-    public Address(String street, String city, String postalCode) {
-        this.street = street;
-        this.city = city;
-        this.postalCode = postalCode;
-    }
-
-    public Integer getIdAddress() { return idAddress; }
-    public void setIdAddress(Integer idAddress) { this.idAddress = idAddress; }
-
-    public String getStreet() { return street; }
-    public void setStreet(String street) { this.street = street; }
-
-    public String getCity() { return city; }
-    public void setCity(String city) { this.city = city; }
-
-    public String getPostalCode() { return postalCode; }
-    public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
+    // getters & setters
 }
