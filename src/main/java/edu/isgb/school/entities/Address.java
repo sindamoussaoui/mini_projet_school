@@ -1,6 +1,5 @@
-package edu.isgb.school.entities;
+package edu.isgb.school.entities.cas1;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -21,8 +20,9 @@ public class Address {
     @Column(name = "cl_postal_code")
     private String postalCode;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "address", fetch = FetchType.LAZY)
+    // FK UNIQUE ONLY ONCE
+    @OneToOne
+    @JoinColumn(name = "student_pk_student", referencedColumnName = "pk_student")
     private Student student;
 
     public Address() {}
