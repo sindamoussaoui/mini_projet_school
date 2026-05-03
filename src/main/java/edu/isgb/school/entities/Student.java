@@ -1,25 +1,29 @@
-package edu.isgb.school.entities.cas1;
+package edu.isgb.school.entities;
 
 import jakarta.persistence.*;
-import java.util.Date;
+import lombok.Getter;
+import lombok.Setter;
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "student")
+@Table(name = "Student")
+@Getter
+@Setter
 public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pk_student")
     private Integer idStudent;
 
-    @Column(name = "cl_name_school")
     private String name;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "cl_birthdate")
-    private Date birthDate;
+    private LocalDate birthDate;
 
-    public Student() {}
+    @ManyToOne
+    @JoinColumn(name = "school_id")
+    private School school;
 
-    // getters & setters
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
 }
