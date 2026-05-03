@@ -1,9 +1,8 @@
 package edu.isgb.school;
 
-import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.annotation.Bean;
+import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.Bean;
 
 import edu.isgb.school.entities.*;
 import edu.isgb.school.repositories.*;
@@ -16,21 +15,22 @@ public class Application {
     }
 
     @Bean
-    CommandLineRunner run(SchoolRepository schoolRepo, DepartmentRepository deptRepo) {
+    CommandLineRunner run(SchoolRepository schoolRepo,
+                          DepartmentRepository deptRepo) {
+
         return args -> {
 
-            // Schools
             School s1 = new School();
             s1.setName("ISGB");
             s1.setPhone(123456);
-            schoolRepo.save(s1);
 
             School s2 = new School();
             s2.setName("ISET");
             s2.setPhone(789101);
+
+            schoolRepo.save(s1);
             schoolRepo.save(s2);
 
-            // Departments
             Department d1 = new Department();
             d1.setName("Informatique");
             d1.setSchool(s1);
@@ -47,7 +47,7 @@ public class Application {
             deptRepo.save(d2);
             deptRepo.save(d3);
 
-            System.out.println("DONE ");
+            System.out.println("DONE SUCCESS");
         };
     }
 }

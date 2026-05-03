@@ -1,7 +1,7 @@
 package edu.isgb.school.repositories;
 
-import edu.isgb.school.entities.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
+import edu.isgb.school.entities.Department;
 
-public interface DepartmentRepository extends JpaRepository<Department, Long> {
+public interface DepartmentRepository extends JpaRepository<Department, Integer> {
 }
