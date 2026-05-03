@@ -1,10 +1,9 @@
 package edu.isgb.school.entities;
 
 import jakarta.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "course")
+@Table(name = "Course")
 public class Course {
 
     @Id
@@ -15,14 +14,21 @@ public class Course {
     @Column(name = "name_course")
     private String name;
 
-    @ManyToMany(mappedBy = "courses")
-    private List<Instructor> instructors;
-
     public Course() {}
 
-    public Course(String name) {
-        this.name = name;
+    public Integer getIdCourse() {
+        return idCourse;
     }
 
-    // GETTERS & SETTERS
+    public void setIdCourse(Integer idCourse) {
+        this.idCourse = idCourse;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
